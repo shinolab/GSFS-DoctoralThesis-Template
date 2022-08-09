@@ -1,0 +1,63 @@
+\documentclass[dvipdfmx,a4paper,draft]{report}
+
+%% comment the following two lines to use Noto Font.
+% \usepackage[deluxe,expert,uplatex]{otf}
+% \usepackage[noto-otc,unicode]{pxchfon}
+
+\usepackage{setspace}
+\usepackage[left=3.5cm,right=3.5cm,top=5cm,bottom=3.5cm]{geometry}
+
+\usepackage[titletoc,page]{appendix}
+
+\usepackage[hyphens]{url}
+
+\usepackage[backend=biber,style=ieee,defernumbers=true]{biblatex}
+\bibliography{bib/ref}
+
+\makeatletter
+\def\bstctlcite{\@ifnextchar[{\@bstctlcite}{\@bstctlcite[@auxout]}}
+\def\@bstctlcite[#1]#2{\@bsphack
+\@for\@citeb:=#2\do{%
+\edef\@citeb{\expandafter\@firstofone\@citeb}%
+\if@filesw\immediate\write\csname #1\endcsname{\string\citation{\@citeb}}\fi}%
+\@esphack}
+\makeatother
+
+\usepackage{uhead}
+\newcommand{\copyrighttext}{2022 Suzuki Shun}
+\usepackage{preface} % Preface settings
+
+\begin{document}
+
+\bstctlcite{IEEEexample:BSTcontrol}
+
+\title{\vspace{-5cm}\LARGE {博士論文}\\
+\vspace{1cm}
+\LARGE {Doctoral Thesis Template for Department of Complex Science and Engineering}\\（複雑理工学専攻　博論テンプレート）}
+\author{\vspace{5cm}\LARGE {鈴木　颯}\vspace{-10cm}}
+\renewcommand{\baselinestretch}{1.5} \normalsize
+\maketitle
+
+\preface
+\input{src/abstract}
+\input{src/acknowledgment}
+
+\body
+\input{src/intro}
+
+\appendix
+\chapter*{References}
+\addcontentsline{toc}{chapter}{References}
+\printbibliography[heading=none,resetnumbers=true]
+
+\begin{refsection}[bib/publications.bib]
+\nocite{*}
+\input{src/publications}
+\end{refsection}
+
+\begin{appendices}
+\renewcommand{\thechapter}{\Alph{chapter}}
+\input{src/appendix}
+\end{appendices}
+
+\end{document}

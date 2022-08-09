@@ -1,0 +1,13 @@
+\chapter*{List of Publications}
+\addcontentsline{toc}{chapter}{List of Publications}
+
+% To classify publications, "keywords" are used.
+% See also "bib/publications.bib".
+
+\printbibliography[keyword=journal,title=Journal Articles,heading=subbibliography,resetnumbers=true]
+
+\printbibliography[keyword=conf,title=International Conference Proceedings,heading=subbibliography]
+
+\renewcommand{\labelnamepunct}{\addcolon\addspace}
+\renewbibmacro*{in:}{}
+\printbibliography[keyword=jconf,title=Domestic Conference Proceedings,heading=subbibliography]
